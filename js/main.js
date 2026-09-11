@@ -23,8 +23,8 @@ const products = [
     name: "iPhone 15 Pro Max",
     storage: "256 Go",
     color: "Titanium",
-    condition: "À confirmer",
-    price: null,
+    condition: "Comme Neuf",
+    price: 3500000,
     available: true,
     image: "assets/images/iphone-1.jpg"
   },
@@ -34,17 +34,17 @@ const products = [
     storage: "256 Go",
     color: "À confirmer",
     condition: "À confirmer",
-    price: null,
+    price: 4000000,
     available: true,
     image: "assets/images/iphone-1.jpg"
   },
   {
     demo: true,
     name: "iPhone 14",
-    storage: "À confirmer",
-    color: "À confirmer",
-    condition: "À confirmer",
-    price: null,
+    storage: "512",
+    color: "Rose",
+    condition: "comme Neuf",
+    price: 2500000,
     available: true,
     image: "assets/images/iphone-1.jpg"
   }
