@@ -8,7 +8,7 @@
    Exemple : 261XXXXXXXXX
 */
 const CONTACT = {
-  whatsapp: "+21267415702",
+  whatsapp: "+212674105702",
   facebook: "https://web.facebook.com/evaristekamiwa"
 };
 
