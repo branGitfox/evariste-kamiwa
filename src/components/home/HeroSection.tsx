@@ -5,7 +5,7 @@ import { ShieldCheck, MessageCircle, ArrowRight, Plane, CheckCircle } from 'luci
 import { Button } from '@/components/ui/Button'
 import { Container } from '@/components/layout/Container'
 import { openWhatsApp } from '@/lib/whatsapp'
-import evImage from '@/assets/images/ev.jpeg'
+import hero from '@/assets/hero-iphone.jpg'
 
 export const HeroSection: React.FC = () => {
   return (
@@ -24,10 +24,10 @@ export const HeroSection: React.FC = () => {
             className="lg:col-span-7 space-y-6"
           >
             {/* Pill tag */}
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.05] border border-white/10 text-neutral-300 text-xs font-medium">
+            {/* <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.05] border border-white/10 text-neutral-300 text-xs font-medium">
               <span className="w-2 h-2 rounded-full bg-[#25D366] animate-pulse" />
               <span>Neutra Mobile — Par Evariste Kamiwa</span>
-            </div>
+            </div> */}
 
             {/* Main Headline */}
             <h1 className="hero-headline text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.1]">
@@ -93,7 +93,7 @@ export const HeroSection: React.FC = () => {
               <div className="relative rounded-[2.5rem] p-3 bg-gradient-to-b from-blue-500/20 via-white/10 to-transparent border border-white/15 shadow-[0_25px_80px_rgba(0,0,0,0.5)] backdrop-blur-xl group">
                 <div className="relative aspect-[3/4] rounded-[2rem] overflow-hidden bg-black flex items-center justify-center">
                   <img
-                    src="/src/assets/hero-iphone.jpg"
+                    src={hero}
                     alt="Apple iPhone Neutra Mobile"
                     className="w-full h-full object-cover object-center transform group-hover:scale-105 transition-transform duration-700"
                   />
