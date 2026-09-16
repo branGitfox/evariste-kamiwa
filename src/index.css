@@ -1,0 +1,647 @@
+@import "tailwindcss";
+
+/* ═══════════════════════════════════════════════════════════════════
+   DESIGN TOKENS — Dark (default) & Light via html.light class
+   ═══════════════════════════════════════════════════════════════════ */
+
+:root,
+html.dark {
+  --bg-ink: #050505;
+  --bg-surface: #0d0d0f;
+  --bg-panel: #111113;
+  --bg-elevated: rgba(255, 255, 255, 0.025);
+  --bg-glass: rgba(10, 10, 12, 0.58);
+  --fg-primary: #ffffff;
+  --fg-secondary: #a1a1aa;
+  --fg-muted: #71717a;
+  --border-line: rgba(255, 255, 255, 0.08);
+  --electric: #4f8cff;
+  --electric-lt: #8ab4ff;
+  color-scheme: dark;
+}
+
+html.light {
+  --bg-ink: #f5f5f7;
+  --bg-surface: #e8e8ed;
+  --bg-panel: #ffffff;
+  --bg-elevated: rgba(0, 0, 0, 0.03);
+  --bg-glass: rgba(255, 255, 255, 0.78);
+  --fg-primary: #1d1d1f;
+  --fg-secondary: #525252;
+  --fg-muted: #6b6b6b;
+  --border-line: rgba(0, 0, 0, 0.08);
+  --electric: #1d63ed;
+  --electric-lt: #3b82f6;
+  color-scheme: light;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   Tailwind v4 theme extension
+   ═══════════════════════════════════════════════════════════════════ */
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --color-ink: var(--bg-ink);
+  --color-panel: var(--bg-panel);
+  --color-surface: var(--bg-surface);
+  --color-line: var(--border-line);
+  --color-muted: var(--fg-muted);
+  --color-subtle: var(--fg-secondary);
+  --color-electric: var(--electric);
+  --color-electric-light: var(--electric-lt);
+  --color-graphite: #27272a;
+  --color-elevated: var(--bg-elevated);
+  --color-glass: var(--bg-glass);
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   BASE
+   ═══════════════════════════════════════════════════════════════════ */
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  background-color: var(--bg-ink);
+  color: var(--fg-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+::selection {
+  background: rgba(79, 140, 255, 0.3);
+  color: #ffffff;
+}
+
+html.light ::selection {
+  background: rgba(29, 99, 237, 0.2);
+  color: #1d1d1f;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   THEME-AWARE UTILITY CLASSES (use in layout components)
+   ═══════════════════════════════════════════════════════════════════ */
+
+.page-bg {
+  background-color: var(--bg-ink);
+  color: var(--fg-primary);
+}
+
+.surface-bg {
+  background-color: var(--bg-surface);
+}
+
+.panel-bg {
+  background-color: var(--bg-panel);
+}
+
+.fg-primary {
+  color: var(--fg-primary);
+}
+
+.fg-secondary {
+  color: var(--fg-secondary);
+}
+
+.fg-muted {
+  color: var(--fg-muted);
+}
+
+.border-line {
+  border-color: var(--border-line);
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   GLASS / PREMIUM CARDS
+   ═══════════════════════════════════════════════════════════════════ */
+
+.glass-card {
+  border: 1px solid var(--border-line);
+  background: var(--bg-glass);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border-radius: 1.25rem;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.22);
+  transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+html.light .glass-card {
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.07);
+}
+
+.premium-panel {
+  border: 1px solid var(--border-line);
+  border-radius: 2rem;
+  background: var(--bg-elevated);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.16);
+  transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+html.light .premium-panel {
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.06);
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   TYPOGRAPHY
+   ═══════════════════════════════════════════════════════════════════ */
+
+.text-gradient {
+  background: linear-gradient(105deg, #fff 5%, #a8c7ff 45%, #4f8cff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+html.light .text-gradient {
+  background: linear-gradient(105deg, #111 5%, #1d63ed 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.hero-gradient-text {
+  background: linear-gradient(135deg, #ffffff 10%, #bfdbfe 50%, #60a5fa 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  display: inline-block;
+}
+
+html.light .hero-headline {
+  color: #0f172a !important;
+}
+
+html.light .hero-gradient-text {
+  background: linear-gradient(135deg, #0f172a 20%, #1d4ed8 100%) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  color: transparent !important;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   HERO GRID
+   ═══════════════════════════════════════════════════════════════════ */
+
+.hero-grid {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.028) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.028) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: linear-gradient(to bottom, black, transparent 90%);
+}
+
+html.light .hero-grid {
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.04) 1px, transparent 1px);
+}
+
+
+/* ═══════════════════════════════════════════════════════════════════
+   LIGHT MODE — Complete Apple-style high-contrast theme
+   Every dark color is overridden. Nothing invisible. Nothing broken.
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ─── 1. ROOT PAGE BACKGROUND ─── */
+html.light,
+html.light body {
+  background-color: #f6f6f8 !important;
+  color: #111827 !important;
+}
+
+/* ─── 2. ALL HEADINGS ─── */
+html.light h1:not(.cta-banner *),
+html.light h2:not(.cta-banner *),
+html.light h3:not(.cta-banner *),
+html.light h4:not(.cta-banner *),
+html.light h5:not(.cta-banner *),
+html.light h6:not(.cta-banner *) {
+  color: #0f172a !important;
+}
+
+/* ─── 3. DARK PANEL BACKGROUNDS => WHITE CARDS ─── */
+/* Covers bg-[#111113], bg-[#111117], bg-[#0d0d0f], bg-[#09090b], bg-[#151518] */
+html.light [class*="bg-[#1"] {
+  background-color: #ffffff !important;
+  border-color: rgba(0, 0, 0, 0.08) !important;
+}
+
+html.light [class*="bg-[#0"] {
+  background-color: #ffffff !important;
+  border-color: rgba(0, 0, 0, 0.08) !important;
+}
+
+/* Exception: keep cta-banner dark */
+html.light .cta-banner,
+html.light .cta-banner [class*="bg-[#1"],
+html.light .cta-banner [class*="bg-[#0"] {
+  background: linear-gradient(135deg, #090d16 0%, #111827 100%) !important;
+  border-color: rgba(255, 255, 255, 0.15) !important;
+}
+
+/* ─── 4. CTA BANNER — always dark navy ─── */
+.cta-banner,
+html.light .cta-banner {
+  background: linear-gradient(135deg, #090d16 0%, #111827 100%) !important;
+}
+
+html.light .cta-banner h2 { color: #ffffff !important; }
+html.light .cta-banner p  { color: #cbd5e1 !important; }
+html.light .cta-banner > div > div span:not(button span) { color: #e2e8f0 !important; }
+
+/* ─── 5. ALL TEXT-WHITE (outside cta-banner) ─── */
+html.light .text-white:not(.cta-banner *):not([class*="bg-[#25D366]"] *) {
+  color: #0f172a !important;
+}
+
+/* ─── 6. MUTED / SECONDARY TEXT ─── */
+html.light .text-neutral-100:not(.cta-banner *) { color: #1e293b !important; }
+html.light .text-neutral-200:not(.cta-banner *) { color: #334155 !important; }
+html.light .text-neutral-300:not(.cta-banner *) { color: #475569 !important; }
+html.light .text-neutral-400:not(.cta-banner *) { color: #64748b !important; }
+html.light .text-neutral-500:not(.cta-banner *) { color: #6b7280 !important; }
+html.light .text-neutral-600:not(.cta-banner *) { color: #4b5563 !important; }
+
+/* ─── 7. ACCENT COLORS (keep vivid, just adjust shade) ─── */
+html.light .text-blue-400   { color: #1d4ed8 !important; }
+html.light .text-emerald-400 { color: #059669 !important; }
+html.light .text-amber-400  { color: #d97706 !important; }
+html.light .text-purple-400 { color: #7c3aed !important; }
+
+/* ─── 8. BORDERS ─── */
+html.light [class*="border-white/"]:not(.cta-banner *):not(button):not(button *) {
+  border-color: rgba(0, 0, 0, 0.09) !important;
+}
+html.light [class*="divide-white"] > * + * {
+  border-color: rgba(0, 0, 0, 0.08) !important;
+}
+
+/* ─── 9. PILL / BADGE CONTAINERS (bg-white/5, bg-white/10 etc.) ─── */
+html.light [class*="bg-white/5"]:not(.cta-banner *):not(button):not(button *),
+html.light [class*="bg-white/10"]:not(.cta-banner *):not(button):not(button *),
+html.light [class*="bg-white/\[0.03\]"],
+html.light [class*="bg-white/\[0.05\]"],
+html.light [class*="bg-white/\[0.08\]"] {
+  background-color: rgba(0, 0, 0, 0.05) !important;
+  border-color: rgba(0, 0, 0, 0.08) !important;
+  color: #374151 !important;
+}
+
+/* ─── 10. bg-black/... (condition tag overlays on cards) ─── */
+html.light [class*="bg-black/"]:not(.cta-banner *) {
+  background-color: rgba(0, 0, 0, 0.07) !important;
+  color: #374151 !important;
+  border-color: rgba(0, 0, 0, 0.1) !important;
+}
+
+/* ─── 11. bg-neutral-900 (inputs, sort select, filter pills) ─── */
+html.light .bg-neutral-900:not(.cta-banner *):not(button):not(button *) {
+  background-color: #ffffff !important;
+  color: #111827 !important;
+  border-color: #d1d5db !important;
+}
+
+/* ─── 12. FILTER PILLS ─── */
+/* Active pill: bg-white text-black => dark bg white text */
+html.light button.bg-white.text-black,
+html.light button[class*="bg-white"][class*="text-black"] {
+  background-color: #0f172a !important;
+  color: #ffffff !important;
+}
+
+/* Inactive pill: bg-white/5 text-neutral-300 => light gray bg dark text */
+html.light button[class*="bg-white/5"],
+html.light button[class*="bg-white/10"] {
+  background-color: #e2e8f0 !important;
+  color: #374151 !important;
+  border-color: rgba(0, 0, 0, 0.07) !important;
+}
+html.light button[class*="bg-white/5"]:hover,
+html.light button[class*="bg-white/10"]:hover {
+  background-color: #cbd5e1 !important;
+  color: #111827 !important;
+}
+
+/* ─── 13. BUTTONS ─── */
+/* Primary: bg-white text-black => dark */
+html.light button.bg-white.text-black.font-semibold:not([class*="bg-[#25D366]"]) {
+  background-color: #111827 !important;
+  color: #ffffff !important;
+}
+/* Outline / secondary buttons */
+html.light button[class*="border-neutral-700"]:not(.cta-banner *) {
+  border-color: #d1d5db !important;
+  color: #374151 !important;
+  background-color: #ffffff !important;
+}
+html.light button[class*="border-neutral-700"]:hover {
+  background-color: #f3f4f6 !important;
+  color: #111827 !important;
+}
+
+/* ─── 14. INPUTS, SELECTS, TEXTAREAS ─── */
+html.light input,
+html.light select,
+html.light textarea {
+  background-color: #ffffff !important;
+  color: #111827 !important;
+  border-color: #d1d5db !important;
+}
+html.light input:focus,
+html.light select:focus,
+html.light textarea:focus {
+  border-color: #2563eb !important;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15) !important;
+}
+html.light input::placeholder,
+html.light textarea::placeholder {
+  color: #9ca3af !important;
+}
+html.light label:not(.cta-banner *) {
+  color: #374151 !important;
+}
+
+/* ─── 15. PRODUCT CARD IMAGE CONTAINER ─── */
+/* Exclude .cta-banner which also has from-neutral-900 in its classes */
+html.light [class*="from-neutral-900"]:not(.cta-banner):not(.cta-banner *) {
+  background: linear-gradient(to bottom, #e8e8ed, #f0f0f5) !important;
+}
+
+/* ─── CTA BANNER RESTORATION (must come last, highest priority) ─── */
+/* Overrides any gradient rules that might match the cta-banner's from-neutral-900 class */
+html.light .cta-banner {
+  background: linear-gradient(135deg, #090d16 0%, #111827 100%) !important;
+  color: #ffffff !important;
+}
+html.light .cta-banner h2,
+html.light .cta-banner h3 {
+  color: #ffffff !important;
+}
+html.light .cta-banner p {
+  color: #cbd5e1 !important;
+}
+html.light .cta-banner > div > div > div > span,
+html.light .cta-banner .text-neutral-300,
+html.light .cta-banner .text-neutral-400 {
+  color: #e2e8f0 !important;
+}
+html.light .cta-banner .bg-white\/5,
+html.light .cta-banner [class*="bg-white/5"],
+html.light .cta-banner [class*="bg-white/10"] {
+  background-color: rgba(255, 255, 255, 0.07) !important;
+  border-color: rgba(255, 255, 255, 0.12) !important;
+  color: #e2e8f0 !important;
+}
+html.light .cta-banner [class*="text-neutral"] {
+  color: #e2e8f0 !important;
+}
+html.light .cta-banner .text-white {
+  color: #ffffff !important;
+}
+
+/* ─── 16. PRODUCT DETAIL SPECS MINI CARDS ─── */
+html.light [class*="bg-white/\[0.03\]"] {
+  background-color: #f4f4f7 !important;
+  border-color: rgba(0, 0, 0, 0.07) !important;
+}
+
+/* ─── 17. TRUST / SERVICES SECTION BACKGROUND ─── */
+html.light section[class*="bg-[#09090b]"],
+html.light section[class*="border-y"] {
+  background-color: #ededf2 !important;
+  border-color: rgba(0, 0, 0, 0.06) !important;
+}
+
+html.light section[class*="via-[#0a0a0c]"] {
+  background: linear-gradient(to bottom, transparent, #e8e8ed 50%, transparent) !important;
+}
+
+/* ─── 18. GLASS CARDS ─── */
+html.light .glass-card {
+  background: rgba(255, 255, 255, 0.92) !important;
+  border-color: rgba(0, 0, 0, 0.08) !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06) !important;
+}
+html.light .premium-panel {
+  background: #ffffff !important;
+  border-color: rgba(0, 0, 0, 0.08) !important;
+}
+
+/* ─── 19. HEADER ─── */
+html.light .header-glass {
+  background-color: rgba(255, 255, 255, 0.92) !important;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08) !important;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+html.light header nav {
+  background-color: rgba(0, 0, 0, 0.04) !important;
+  border-color: rgba(0, 0, 0, 0.08) !important;
+}
+html.light header nav a {
+  color: #4b5563 !important;
+}
+html.light header nav a:hover {
+  color: #111827 !important;
+  background-color: #ffffff !important;
+}
+html.light header button[aria-label="Toggle theme"],
+html.light header a[aria-label="Admin"] {
+  background-color: #ffffff !important;
+  border-color: rgba(0, 0, 0, 0.1) !important;
+  color: #374151 !important;
+}
+
+/* Mobile drawer */
+html.light div[class*="bg-[#0d0d0f]"][class*="fixed"] {
+  background-color: #ffffff !important;
+  border-color: rgba(0, 0, 0, 0.1) !important;
+  color: #111827 !important;
+}
+
+/* ─── 20. FOOTER ─── */
+html.light footer {
+  background-color: #ffffff !important;
+  border-top-color: rgba(0, 0, 0, 0.08) !important;
+  color: #4b5563 !important;
+}
+html.light footer h4          { color: #111827 !important; }
+html.light footer p           { color: #4b5563 !important; }
+html.light footer a:not(.footer-social-btn) { color: #4b5563 !important; }
+html.light footer a:not(.footer-social-btn):hover { color: #111827 !important; }
+html.light .footer-social-btn {
+  background-color: #f3f4f6 !important;
+  border-color: #e5e7eb !important;
+}
+html.light .footer-social-btn:hover {
+  border-color: transparent !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12) !important;
+}
+
+/* ─── 21. ADMIN SIDEBAR ─── */
+html.light aside {
+  background-color: #ffffff !important;
+  border-right-color: rgba(0, 0, 0, 0.08) !important;
+}
+html.light aside h2 { color: #111827 !important; }
+html.light aside nav a { color: #4b5563 !important; }
+html.light aside nav a:hover {
+  background-color: #f3f4f6 !important;
+  color: #111827 !important;
+}
+html.light aside nav a[class*="bg-white"] {
+  background-color: #111827 !important;
+  color: #ffffff !important;
+}
+
+/* ─── 22. MAIN CONTENT AREA ─── */
+html.light main {
+  background-color: #f6f6f8;
+  color: #111827;
+}
+
+/* ─── 23. TABLE (ADMIN) ─── */
+html.light table th {
+  background-color: #f9fafb !important;
+  color: #374151 !important;
+  border-color: #e5e7eb !important;
+}
+html.light table td {
+  border-color: #e5e7eb !important;
+  color: #1f2937 !important;
+}
+
+/* ─── 24. STRONG TAGS ─── */
+html.light strong:not(.cta-banner *) {
+  color: #0f172a !important;
+}
+
+/* ─── 25. ICON COLORS ─── */
+html.light svg.text-neutral-400,
+html.light [class*="text-neutral-400"] svg {
+  color: #94a3b8 !important;
+}
+
+/* ─── 26. WhatsApp green link in contact info ─── */
+html.light .text-\[\#25D366\] {
+  color: #15803d !important;
+}
+
+/* ─── 27. Thumbnail buttons (ProductDetails) ─── */
+html.light button[class*="bg-[#111"] {
+  background-color: #f0f0f5 !important;
+  border-color: rgba(0, 0, 0, 0.1) !important;
+}
+html.light button[class*="border-white"]:not([class*="bg-[#25D366]"]):not(.cta-banner *) {
+  border-color: #0f172a !important;
+}
+
+/* ─── 28. About page photo frame gradient ─── */
+html.light [class*="from-white/15"],
+html.light [class*="to-white/5"] {
+  background: linear-gradient(to bottom, rgba(0,0,0,0.05), rgba(0,0,0,0.02)) !important;
+}
+
+/* ─── 29. Hover on dark cards ─── */
+html.light [class*="hover:bg-white/\[0.08\]"]:hover {
+  background-color: rgba(0, 0, 0, 0.04) !important;
+}
+html.light [class*="hover:bg-\[#151518\]"]:hover,
+html.light [class*="hover:border-white/15"]:hover {
+  border-color: rgba(0, 0, 0, 0.14) !important;
+}
+
+/* ─── 30. Background gradient glows (hero) ─── */
+html.light .bg-blue-600\/10 { background: rgba(37, 99, 235, 0.04) !important; }
+html.light .bg-purple-600\/10 { background: rgba(124, 58, 237, 0.04) !important; }
+
+/* ─── 31. Hero visual frame ─── */
+html.light [class*="border-white/15"] { border-color: rgba(0, 0, 0, 0.1) !important; }
+
+/* ─── 32. Mobile bottom nav ─── */
+html.light nav[class*="fixed"][class*="bottom-0"] {
+  background-color: rgba(255, 255, 255, 0.95) !important;
+  border-top-color: rgba(0, 0, 0, 0.08) !important;
+}
+html.light nav[class*="fixed"][class*="bottom-0"] a { color: #6b7280 !important; }
+html.light nav[class*="fixed"][class*="bottom-0"] a.text-white { color: #111827 !important; }
+
+/* ═══════════════════════════════════════════════════════════════════
+   ROUTE ANIMATION
+   ═══════════════════════════════════════════════════════════════════ */
+
+@keyframes travel {
+
+  0%,
+  100% {
+    left: 0;
+    opacity: 0.3;
+  }
+
+  50% {
+    left: calc(100% - 7px);
+    opacity: 1;
+  }
+}
+
+.route-pulse {
+  animation: travel 3s ease-in-out infinite;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   SCROLLBAR
+   ═══════════════════════════════════════════════════════════════════ */
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+html.light ::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.15);
+}
+
+.admin-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+
+.admin-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.admin-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 2px;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   REDUCED MOTION
+   ═══════════════════════════════════════════════════════════════════ */
+
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
